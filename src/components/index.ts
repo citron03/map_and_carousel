@@ -1,4 +1,5 @@
 import Carousel from "./Carousel";
 import Map from "./Map";
+import Navigator from "./Navigator";
 
-export { Carousel, Map };
+export { Carousel, Map, Navigator };

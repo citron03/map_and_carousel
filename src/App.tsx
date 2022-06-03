@@ -1,15 +1,22 @@
-import { useState } from 'react';
 import './App.css';
-import { Map, Carousel } from "./components";
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Map, Carousel, Navigator } from "./components";
 
 function App() {
 
-  const [data, setDate] = useState([]);
-
+  const [data, setData] = useState([]);
+  
   return (
     <div className="App">
-      <Carousel/>
-      <Map/>
+      <BrowserRouter>
+        <Navigator/>
+        <Routes>
+            <Route path="/" element={<Map/>} />
+            <Route path="/search" element={<Map search={true} data={data}/>} />
+            <Route path="/carousel" element={<Carousel setData={setData}/>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
