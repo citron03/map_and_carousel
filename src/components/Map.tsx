@@ -26,7 +26,7 @@ const MapDiv = styled.div`
     width: fit-content;
 `
 
-const KaKaoMap = styled.div`
+const KakaoMap = styled.div`
     width: 1000px;
     height: 800px;
 `
@@ -54,13 +54,19 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
     useEffect(() => {
         if(data?.x){
             const placePosition = new window.kakao.maps.LatLng(data.y, data.x);
-            const bounds = new window.kakao.maps.LatLngBounds();
-            bounds.extend(placePosition);
             if(mapObj?.setBounds){
+                const bounds = new window.kakao.maps.LatLngBounds();
+                bounds.extend(placePosition);
                 mapObj.setBounds(bounds);        
+            }
+            if(mapObj?.Id) {
+                const marker = new window.kakao.maps.Marker();
+                marker.setPosition(placePosition);
+                marker.setMap(mapObj);       
             }
         }
       }, [data, mapObj]);
+    
 
     return (
         <MapDiv>
@@ -69,7 +75,7 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
                 <h2>{data.place_name}</h2> : null}
             {data?.address_name ? 
                 <h2>{data.address_name}</h2> : null}
-            <KaKaoMap id="map"/>
+            <KakaoMap id="map"/>
         </MapDiv>
         );
 };

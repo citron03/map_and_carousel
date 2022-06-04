@@ -20,6 +20,11 @@ input {
   sans-serif;
 }
 
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #574b90;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
