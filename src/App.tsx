@@ -5,7 +5,7 @@ import { Map, Carousel, Navigator } from "./components";
 
 function App() {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   
   return (
     <div className="App">

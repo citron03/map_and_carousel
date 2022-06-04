@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-//* Props 타입 명시 컴포넌트가 상위 컴포넌트로 부터 어떤 속성을 전달받을 지에 대한 props 정의
+interface dataProp {
+    address_name?: string;
+    road_address_name?: string;
+    category_group_name?: string;
+    phone?: string;
+    place_name?: string;
+    x?: string;
+    y?: string;
+}
+
 interface MapProps {
     search?: boolean;
-    data?: Array<any>;
+    // data?: Array<any>;
+    data?: dataProp;
 }
 
 const MapDiv = styled.div`
@@ -42,20 +52,23 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
     }, []);
 
     useEffect(() => {
-        if(data && data.length > 0){
-            const placePosition = new window.kakao.maps.LatLng(data[0].y, data[0].x);
+        if(data?.x){
+            const placePosition = new window.kakao.maps.LatLng(data.y, data.x);
             const bounds = new window.kakao.maps.LatLngBounds();
             bounds.extend(placePosition);
             if(mapObj?.setBounds){
                 mapObj.setBounds(bounds);        
             }
         }
-
       }, [data, mapObj]);
 
     return (
         <MapDiv>
-            <h1>이건 지도</h1>
+            <h1>지도</h1>
+            {data?.place_name ? 
+                <h2>{data.place_name}</h2> : null}
+            {data?.address_name ? 
+                <h2>{data.address_name}</h2> : null}
             <KaKaoMap id="map"/>
         </MapDiv>
         );
