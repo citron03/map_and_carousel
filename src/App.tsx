@@ -1,7 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Map, Carousel, Navigator } from "./components";
+import { Map, SearchCarousel, Navigator, Footer } from "./components";
 
 function App() {
 
@@ -14,8 +14,9 @@ function App() {
         <Routes>
             <Route path="/" element={<Map/>} />
             <Route path="/search" element={<Map search={true} data={data}/>} />
-            <Route path="/carousel" element={<Carousel setData={setData}/>} />
+            <Route path="/carousel" element={<SearchCarousel setData={setData}/>} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

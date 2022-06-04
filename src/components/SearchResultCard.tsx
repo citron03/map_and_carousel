@@ -19,14 +19,14 @@ interface SearchResultCardProps {
 
 
 const SearchResultCardDiv = styled.div`
-    background-color: #f9f8d8;
+    background-color: #fdefef;
     padding: 30px;
     margin: 60px;
     border: 3px solid black;
     border-radius: 20px;
     &:hover {
-        border: 3px solid red;
-        background-color: #fff700;
+        border: 3px solid #ff4757;
+        background-color: #fdc7c7;
         cursor: pointer;
     }
 `

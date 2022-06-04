@@ -16,18 +16,23 @@ interface CarouselProps {
 const SearchDiv = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     label {
         padding: 15px;
         font-size: 1.5rem;
     }
     input {
         width: 60%;
+        height: 4rem;
         font-size: 2rem;
+        padding-left: 40px;
     }
     button {
         font-size: 1.5rem;
         margin: 15px;
-        padding: 10px;
+        padding: 15px;
+        background-color: white;
+        border-radius: 25px;
     }
 `
 
@@ -40,7 +45,7 @@ declare global {
 
 const { kakao } = window;
 
-const Carousel: React.FC<CarouselProps> = ({setData}) => {
+const SearchCarousel: React.FC<CarouselProps> = ({setData}) => {
     // React.FC (React의 함수형 컴포넌트)
 
     SwiperCore.use([Navigation, Scrollbar]);
@@ -109,4 +114,4 @@ const Carousel: React.FC<CarouselProps> = ({setData}) => {
         );
 };
 
-export default Carousel;
+export default SearchCarousel;
