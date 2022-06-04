@@ -88,18 +88,18 @@ const Carousel: React.FC<CarouselProps> = ({setData}) => {
     
     return (
         <div>
-            <h1>캐러셀</h1>
-            <Swiper {...settings}>
+            <h1>검색 결과</h1>
                 {cardList.length > 0 ?
-                    cardList.map((el, idx) => {
-                        return (
-                            <SwiperSlide key={idx}>
-                                <SearchResultCard data={el} onClick={() => handleClickCard(el)}/>
-                            </SwiperSlide>
-                        );
-                    }) 
+                    <Swiper {...settings}>
+                        {cardList.map((el, idx) => {
+                            return (
+                                <SwiperSlide key={idx}>
+                                    <SearchResultCard data={el} onClick={() => handleClickCard(el)}/>
+                                </SwiperSlide>
+                            );
+                        })}
+                    </Swiper>
                 : <h3>검색 결과가 없습니다.</h3>}
-            </Swiper>
             <SearchDiv>
                 <label>장소 검색</label>
                 <input type="text" placeholder="검색" onChange={(e) => setKeyword(e.target.value)} onKeyDown={(e) => handleEnter(e)}/>

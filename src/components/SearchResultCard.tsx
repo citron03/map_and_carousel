@@ -5,6 +5,7 @@ interface dataProp {
     address_name: string;
     road_address_name: string;
     category_group_name: string;
+    category_name: string;
     phone: string;
     place_name: string;
     x: string;
@@ -18,10 +19,11 @@ interface SearchResultCardProps {
 
 
 const SearchResultCardDiv = styled.div`
-    background-color: #fffa65;
+    background-color: #f9f8d8;
     padding: 30px;
-    margin: 50px;
+    margin: 60px;
     border: 3px solid black;
+    border-radius: 20px;
     &:hover {
         border: 3px solid red;
         background-color: #fff700;
@@ -36,6 +38,7 @@ const SearchResultCard: React.FC<SearchResultCardProps> = ({data, onClick}) => {
             <h2>{data.category_group_name}</h2>
             <p>주소지: {data.address_name}</p>
             <p>도로명 주소: {data.road_address_name}</p>
+            <p>카테고리 구분: {data.category_name}</p>
             {data.phone ? 
                 <p>전화번호: {data.phone}</p> : null}
         </SearchResultCardDiv>

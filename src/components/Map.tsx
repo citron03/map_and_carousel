@@ -20,10 +20,10 @@ interface MapProps {
 const MapDiv = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 50px;
-    margin: 60px;
-    border: 1px solid red;
+    margin: 60px auto;
+    border: 3px solid #303952;
+    width: fit-content;
 `
 
 const KaKaoMap = styled.div`
