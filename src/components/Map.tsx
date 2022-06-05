@@ -57,7 +57,7 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
 
     const [mapObj, setMapObj] = useState({} as any);
     const [mapNavigator, setMapNavigator] = useState({"map": true, "roadview": true});
-    const [isVaildRoadView, setIsVaildRoadView] = useState(false);
+    const [isVaildRoadView, setIsVaildRoadView] = useState(true);
 
     useEffect(() => {
         let container = document.getElementById('map');
