@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import MapNavigation from "./MapNavigation";
 
 interface dataProp {
     address_name?: string;
@@ -26,7 +27,22 @@ const MapDiv = styled.div`
     width: fit-content;
 `
 
+const RoadViewDiv = styled.div<{isVisible: boolean}>`
+    display: ${({isVisible}) => isVisible ? "flex" : "none"};
+    flex-direction: column;
+`
+
+const MapInfoDiv = styled.div<{isVisible: boolean}>`
+    display: ${({isVisible}) => isVisible ? "flex" : "none"};
+    flex-direction: column;
+`
+
 const KakaoMap = styled.div`
+    width: 1000px;
+    height: 800px;
+`
+
+const RoadView = styled.div`
     width: 1000px;
     height: 800px;
 `
@@ -40,6 +56,8 @@ declare global {
 const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수형 컴포넌트
 
     const [mapObj, setMapObj] = useState({} as any);
+    const [mapNavigator, setMapNavigator] = useState({"map": true, "roadview": true});
+    const [isVaildRoadView, setIsVaildRoadView] = useState(true);
 
     useEffect(() => {
         let container = document.getElementById('map');
@@ -52,17 +70,34 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
     }, []);
 
     useEffect(() => {
-        if(data?.x){
-            const placePosition = new window.kakao.maps.LatLng(data.y, data.x);
+        if(data?.x) {
+            const searchPosition = new window.kakao.maps.LatLng(data.y, data.x);
             if(mapObj?.setBounds){
+                // 지도 위치 이동
                 const bounds = new window.kakao.maps.LatLngBounds();
-                bounds.extend(placePosition);
+                bounds.extend(searchPosition);
                 mapObj.setBounds(bounds);        
             }
             if(mapObj?.Id) {
+                // 지도 마커 설정
                 const marker = new window.kakao.maps.Marker();
-                marker.setPosition(placePosition);
+                marker.setPosition(searchPosition);
                 marker.setMap(mapObj);       
+                // 로드 뷰 설정
+                const roadviewContainer = document.getElementById('roadview'); 
+                const roadview = new window.kakao.maps.Roadview(roadviewContainer); 
+                const roadviewClient = new window.kakao.maps.RoadviewClient(); 
+                
+                // 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+                roadviewClient.getNearestPanoId(searchPosition, 50, function(panoId: any) {
+                    // console.log("panoId", panoId);
+                    if(panoId){
+                         //panoId와 중심좌표를 통해 로드뷰 실행, 로드뷰가 실행 가능한 상태일때만 (panoId 존재)
+                        roadview.setPanoId(panoId, searchPosition);
+                    } else {
+                        setIsVaildRoadView(false); // 로드 뷰 없음
+                    }
+                });                
             }
         }
       }, [data, mapObj]);
@@ -70,12 +105,21 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
 
     return (
         <MapDiv>
-            <h1>지도</h1>
+            <MapNavigation mapNavigator={mapNavigator} setMapNavigator={setMapNavigator}/>
             {data?.place_name ? 
                 <h2>{data.place_name}</h2> : null}
             {data?.address_name ? 
                 <h2>{data.address_name}</h2> : null}
-            <KakaoMap id="map"/>
+            <MapInfoDiv isVisible={mapNavigator.map}>
+                <h1>지도</h1>
+                <KakaoMap id="map"/>
+            </MapInfoDiv>          
+            <RoadViewDiv isVisible={mapNavigator.roadview}>
+                <h1>로드 뷰</h1>
+                {isVaildRoadView ? 
+                    <RoadView id="roadview"/> : <p>해당 지역에 로드뷰가 없습니다.</p>
+                }
+            </RoadViewDiv>
         </MapDiv>
         );
 };
