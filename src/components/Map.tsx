@@ -57,7 +57,7 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
 
     const [mapObj, setMapObj] = useState({} as any);
     const [mapNavigator, setMapNavigator] = useState({"map": true, "roadview": true});
-    const [isVaildRoadView, setIsVaildRoadView] = useState(true);
+    const [isVaildRoadView, setIsVaildRoadView] = useState(false);
 
     useEffect(() => {
         let container = document.getElementById('map');
@@ -94,6 +94,7 @@ const Map: React.FC<MapProps> = ({data}) => {    // React.FC : React의 함수�
                     if(panoId){
                          //panoId와 중심좌표를 통해 로드뷰 실행, 로드뷰가 실행 가능한 상태일때만 (panoId 존재)
                         roadview.setPanoId(panoId, searchPosition);
+                        setIsVaildRoadView(true);
                     } else {
                         setIsVaildRoadView(false); // 로드 뷰 없음
                     }

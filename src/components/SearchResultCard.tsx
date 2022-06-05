@@ -37,7 +37,8 @@ const SearchResultCard: React.FC<SearchResultCardProps> = ({data, onClick}) => {
             <h1>{data.place_name}</h1>
             <h2>{data.category_group_name}</h2>
             <p>주소지: {data.address_name}</p>
-            <p>도로명 주소: {data.road_address_name}</p>
+            {data.road_address_name ? 
+                <p>도로명 주소: {data.road_address_name}</p> : null}
             <p>카테고리 구분: {data.category_name}</p>
             {data.phone ? 
                 <p>전화번호: {data.phone}</p> : null}

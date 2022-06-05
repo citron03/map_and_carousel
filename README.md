@@ -10,3 +10,5 @@
 * styled-components ^5.3.5
 * @types/styled-components ^5.1.25
 * swiper ^8.2.2
+* apexcharts ^3.35.3
+* react-apexcharts ^1.4.0

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import SearchResultCard from "./SearchResultCard";
+import { PieChart, SearchResultCard } from "./";
 
 //* Props 타입 명시 컴포넌트가 상위 컴포넌트로 부터 어떤 속성을 전달받을 지에 대한 props 정의
 interface CarouselProps {
@@ -110,6 +110,7 @@ const SearchCarousel: React.FC<CarouselProps> = ({setData}) => {
                 <input type="text" placeholder="검색" onChange={(e) => setKeyword(e.target.value)} onKeyDown={(e) => handleEnter(e)}/>
                 <button onClick={handleSearch}>GO!</button>
             </SearchDiv>
+            {cardList.length > 0 ? <PieChart data={cardList}/> : null}
         </div>
         );
 };
