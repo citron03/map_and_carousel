@@ -29,6 +29,14 @@ const SearchResultCardDiv = styled.div`
         background-color: #fdc7c7;
         cursor: pointer;
     }
+    @media only screen and (max-width: 767px) {
+        width: 50%;
+        padding: 10px;
+        margin: 20px auto;
+        h1, h2, p {
+            font-size: 1rem;
+        }
+    }
 `
 
 const SearchResultCard: React.FC<SearchResultCardProps> = ({data, onClick}) => {

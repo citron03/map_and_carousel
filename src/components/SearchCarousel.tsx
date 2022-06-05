@@ -20,12 +20,21 @@ const SearchDiv = styled.div`
     label {
         padding: 15px;
         font-size: 1.5rem;
+        @media only screen and (max-width: 767px) {
+            font-size: 1rem;
+        }
     }
     input {
         width: 60%;
         height: 4rem;
         font-size: 2rem;
         padding-left: 40px;
+        @media only screen and (max-width: 767px) {
+            width: 30%;
+            font-size: 1rem;
+            height: 1.5rem;
+            padding-left: 20px;
+        }
     }
     button {
         font-size: 1.5rem;
@@ -33,6 +42,18 @@ const SearchDiv = styled.div`
         padding: 15px;
         background-color: white;
         border-radius: 25px;
+        @media only screen and (max-width: 767px) {
+            font-size: 1rem;
+            margin: 5px;
+            padding: 5px;
+        }
+    }
+`
+
+const SwiperDiv = styled.div`
+    @media only screen and (max-width: 767px) {
+        width: 80%;
+        margin: auto;
     }
 `
 
@@ -94,6 +115,7 @@ const SearchCarousel: React.FC<CarouselProps> = ({setData}) => {
     return (
         <div>
             <h1>검색 결과</h1>
+            <SwiperDiv>
                 {cardList.length > 0 ?
                     <Swiper {...settings}>
                         {cardList.map((el, idx) => {
@@ -105,6 +127,7 @@ const SearchCarousel: React.FC<CarouselProps> = ({setData}) => {
                         })}
                     </Swiper>
                 : <h3>검색 결과가 없습니다.</h3>}
+            </SwiperDiv>
             <SearchDiv>
                 <label>장소 검색</label>
                 <input type="text" placeholder="검색" onChange={(e) => setKeyword(e.target.value)} onKeyDown={(e) => handleEnter(e)}/>

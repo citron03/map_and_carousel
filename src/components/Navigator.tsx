@@ -13,6 +13,9 @@ const NavigatorDiv = styled.div`
         text-decoration: none;
         font-size: 3rem;
         padding: 15px;
+        @media only screen and (max-width: 767px) {
+            font-size: 1rem;
+        }
     }
 `
 

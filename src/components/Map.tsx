@@ -25,6 +25,11 @@ const MapDiv = styled.div`
     margin: 60px auto;
     border: 3px solid #303952;
     width: fit-content;
+    @media only screen and (max-width: 767px) {
+        margin: 0 auto;
+        padding: 15px;
+        width: 60%;
+    }
 `
 
 const RoadViewDiv = styled.div<{isVisible: boolean}>`
@@ -40,11 +45,19 @@ const MapInfoDiv = styled.div<{isVisible: boolean}>`
 const KakaoMap = styled.div`
     width: 1000px;
     height: 800px;
+    @media only screen and (max-width: 767px) {
+        width: 100%;
+        height: 400px;
+    }
 `
 
 const RoadView = styled.div`
     width: 1000px;
     height: 800px;
+    @media only screen and (max-width: 767px) {
+        width: 100%;
+        height: 400px;
+    }
 `
 
 declare global {

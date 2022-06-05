@@ -15,6 +15,14 @@ const PieChartDiv = styled.div`
     margin: 50px auto;
     padding: 50px;
     width: 50%;
+    @media only screen and (max-width: 767px) {
+        width: 70%;
+        margin: auto;
+        padding: 0;
+        h2 {
+            font-size: 1rem;
+        }
+    }
 `
 
 const PieChart: React.FC<PieChartProps> = ({data}) => {

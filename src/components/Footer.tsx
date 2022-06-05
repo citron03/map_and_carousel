@@ -8,6 +8,9 @@ const FooterDiv = styled.div`
     border-top: 1.5px solid #303952;
     width: fit-content;
     margin: 30px auto;
+    @media only screen and (max-width: 767px) {
+        font-size: 0.5rem;
+    }
 `
 
 const Footer: React.FC<FooterProps> = () => {
