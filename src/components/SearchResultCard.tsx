@@ -30,7 +30,7 @@ const SearchResultCardDiv = styled.div`
         cursor: pointer;
     }
     @media only screen and (max-width: 767px) {
-        width: 50%;
+        width: 60%;
         padding: 10px;
         margin: 20px auto;
         h1, h2, p {

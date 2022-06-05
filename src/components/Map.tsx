@@ -28,7 +28,7 @@ const MapDiv = styled.div`
     @media only screen and (max-width: 767px) {
         margin: 0 auto;
         padding: 15px;
-        width: 60%;
+        width: 80%;
     }
 `
 
